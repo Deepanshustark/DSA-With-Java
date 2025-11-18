@@ -33,7 +33,7 @@ class NodeStructure{
             if(temp.next==null){
                 System.out.println(temp.data);
             }else{
-                System.out.print(temp.data + " > ");
+                System.out.print(temp.data + "->");
             }
             temp=temp.next;
         }
@@ -123,26 +123,76 @@ class NodeStructure{
         }
         return -1;
     }
+    // Search Value by recursion
 
+    public int recursiveSearch(Node temp, int key,int i){
+        if(temp==null){
+            return -1;
+        }
+        if(temp.data==key){
+            return i;
+        }
+        return recursiveSearch(temp.next,key,i+1);
+
+    }
+
+    // void reverse Linked List
+    public void reverse(){
+        Node pre=null;
+        Node curr=tail=head;
+        Node next;
+
+        while(curr!=null){
+            next=curr.next;
+            curr.next=pre;
+            pre=curr;
+            curr=next;
+        }
+        head=pre;
+    }
+    public void removeFromLast(int k){
+        Node temp=head;
+        if(k==size){
+            head=head.next;
+        }
+        int itr=size-k;
+
+        for(int i=0;i<itr-1;i++){
+            temp=temp.next;
+        }
+        temp.next=temp.next.next;
+
+    }
+    public void isPalindrome(Node head,Node tail){
+
+    }
 
     public static void main(String[] args) {
         NodeStructure ll= new NodeStructure();
-        ll.addFirst(40);
-        ll.addFirst(30);
-        ll.addFirst(20);
-        ll.addFirst(10);
-        ll.addLast(50);
-        ll.addLast(60);
-        ll.removeFirst();
-        ll.removeLast();
-        ll.addMid(2,35);
-        ll.addMid(4,45);
-        ll.addFirst(10);
-        ll.addLast(60);
+        ll.addFirst(1);
+        ll.addFirst(5);
+        ll.addFirst(5);
+        ll.addFirst(1);
+        // ll.addLast(50);
+        // ll.addLast(60);
+        // ll.removeFirst();
+        // ll.removeLast();
+        // ll.addMid(2,35);
+        // ll.addMid(4,45);
+        // ll.addFirst(10);
+        // ll.addLast(60);
         ll.print(head);
         System.out.println("Size = "+size);
-        System.out.println(ll.itrSearch(40));
-        System.out.println(ll.itrSearch(70));
+        // System.out.println(ll.itrSearch(40));
+        // System.out.println(ll.itrSearch(70));
+        // Node temp=head;
+        // System.out.println(ll.recursiveSearch(temp, 90, 0));
+        // ll.reverse();
+        // ll.print(head);
+        // ll.removeFromLast(6);
+        // ll.print(head);
+        System.out.println(head.data);
+        System.out.println(tail.data);
         
     }
 }
